@@ -2,7 +2,7 @@ import bisect
 
 class MaintenanceLog:
     def __init__(self, maintenance_logs):
-        # Sort logs by date
+    
         self.dates = []
         self.costs = []
         self.prefix_sum = []
@@ -15,12 +15,12 @@ class MaintenanceLog:
             self.prefix_sum.append(total)
     
     def query_cost(self, start_date, end_date):
-        # Find range indices
+        
         left = bisect.bisect_left(self.dates, start_date)
         right = bisect.bisect_right(self.dates, end_date) - 1
 
         if left > right:
-            return 0  # No records in range
+            return 0  
         
         return self.prefix_sum[right] - (self.prefix_sum[left - 1] if left > 0 else 0)
 
